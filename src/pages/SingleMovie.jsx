@@ -18,20 +18,20 @@ function SingleMovie() {
   
   useEffect(() => {   
     useAxios().get(`/movie/${id}?api_key=${API_KEY}`).then(res => setSingleData(res.data)) 
-  },[])
+  },[id])
 
   useEffect(() => {
     useAxios().get(`/movie/${id}/videos?api_key=${API_KEY}`).then(res => setVideos(res.data.results.splice(0, 5))) 
-  },[])
+  },[id])
 
   useEffect(() => {
     useAxios().get(`/movie/${id}/videos?api_key=${API_KEY}`).then(res => setVideosMore(res.data.results.splice(5, 5))) 
     
-  },[])
+  },[id])
   
   useEffect(() => {
     useAxios().get(`/movie/${id}/credits?api_key=${API_KEY}`).then(res => setActors(res.data.cast)) 
-  },[])
+  },[id])
 
   function handleErrorImg(e){
     e.target.src = ActorEmpty
@@ -73,7 +73,7 @@ function SingleMovie() {
             { moreOpen ? "Show less" : "More .."}
           </Button>
 
-          { moreOpen && videosMore.length > 0 ? (
+          {moreOpen && videosMore.length > 0 ? (
             videosMore.map(item =>( 
             <YouTube 
               className={` duration-300 ${moreOpen ? "scale-100" : "scale-0 opacity-0"}`}
@@ -81,7 +81,7 @@ function SingleMovie() {
             />
             ))
           ) : (
-            moreOpen && <div>"No more videos</div>
+            moreOpen && <div>"No more videos"</div>
           )}
         </div>
       </div>
