@@ -1,11 +1,9 @@
 import React from 'react'
+import MoviePage from '../components/MoviePage'
 
 function Popular() {
-  return (
-    <div>
-      poplar
-    </div>
-  )
+  return <MoviePage URL={"popular"} />
+
 }
 
 export default Popular
